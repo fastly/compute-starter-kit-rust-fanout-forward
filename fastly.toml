@@ -1,0 +1,5 @@
+manifest_version = 2
+name = "Fanout forwarding starter for Rust"
+description = "Enables Fanout on a service, forwarding to a backend."
+authors = ["<oss@fastly.com>"]
+language = "rust"
