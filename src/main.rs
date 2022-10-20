@@ -29,7 +29,5 @@ fn main() -> Result<(), Error> {
         return Ok(req.with_body(body).send("backend")?.send_to_client());
     }
 
-    // despite the name, this function works for both http requests and
-    // websockets. we plan to update the SDK to make this more intuitive
-    Ok(req.upgrade_websocket("backend")?)
+    Ok(req.handoff_fanout("backend")?)
 }
