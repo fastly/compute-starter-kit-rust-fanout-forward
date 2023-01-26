@@ -1,5 +1,12 @@
+# This file describes a Fastly Compute@Edge package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+authors = ["<oss@fastly.com>"]
+description = "Enables Fanout on a service, forwarding to a backend."
+language = "rust"
 manifest_version = 2
 name = "Fanout forwarding starter for Rust"
-description = "Enables Fanout on a service, forwarding to a backend."
-authors = ["<oss@fastly.com>"]
-language = "rust"
+service_id = ""
+
+[scripts]
+  build = "cargo build --bin fastly-compute-project --release --target wasm32-wasi --color always"
