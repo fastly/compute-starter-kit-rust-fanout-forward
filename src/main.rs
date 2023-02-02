@@ -20,6 +20,9 @@ fn take_non_empty_body(req: &mut Request) -> Result<Option<Body>, Error> {
 }
 
 fn main() -> Result<(), Error> {
+    // Log service version
+    println!("FASTLY_SERVICE_VERSION: {}", std::env::var("FASTLY_SERVICE_VERSION").unwrap_or_else(|_| String::new()));
+    
     let mut req = Request::from_client();
 
     if let Some(body) = take_non_empty_body(&mut req)? {
