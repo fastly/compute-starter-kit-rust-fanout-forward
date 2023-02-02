@@ -2,4 +2,4 @@ authors = ["<oss@fastly.com>"]
 description = "Enables Fanout on a service, forwarding to a backend."
 language = "rust"
 manifest_version = 2
-name = "Fanout forwarding starter for Rust"
+name = "Fanout forwarding"
