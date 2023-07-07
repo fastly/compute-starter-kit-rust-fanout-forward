@@ -20,7 +20,7 @@ fn take_non_empty_body(req: &mut Request) -> Result<Option<Body>, Error> {
 }
 
 fn main() -> Result<(), Error> {
-    // Log service version
+    // Log service version.
     println!(
         "FASTLY_SERVICE_VERSION: {}",
         std::env::var("FASTLY_SERVICE_VERSION").unwrap_or_else(|_| String::new())
@@ -29,11 +29,11 @@ fn main() -> Result<(), Error> {
     let mut req = Request::from_client();
 
     if let Some(body) = take_non_empty_body(&mut req)? {
-        // currently, Fanout only supports requests with empty bodies.
-        // if the request has a body, forward it to the backend directly
+        // Currently, Fanout only supports requests with empty bodies.
+        // If the request has a body, forward it to the backend directly.
 
-        return Ok(req.with_body(body).send("backend")?.send_to_client());
+        return Ok(req.with_body(body).send("origin")?.send_to_client());
     }
 
-    Ok(req.handoff_fanout("backend")?)
+    Ok(req.handoff_fanout("origin")?)
 }
