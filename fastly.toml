@@ -3,3 +3,6 @@ description = "Enables Fanout on a service, forwarding to a backend."
 language = "rust"
 manifest_version = 2
 name = "Fanout forwarding"
+
+[scripts]
+  build = "cargo build --bin fastly-compute-project --release --target wasm32-wasi --color always"
