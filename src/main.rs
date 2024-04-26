@@ -1,4 +1,3 @@
-use fastly::experimental::RequestUpgradeWebsocket;
 use fastly::{Body, Error, Request};
 
 fn take_non_empty_body(req: &mut Request) -> Result<Option<Body>, Error> {
