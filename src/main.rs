@@ -1,5 +1,5 @@
-use fastly::{Error, Request};
 use fastly::http::{HeaderValue, Method};
+use fastly::{Error, Request};
 
 fn main() -> Result<(), Error> {
     // Log service version.
@@ -12,9 +12,11 @@ fn main() -> Result<(), Error> {
 
     let mut use_fanout = false;
 
-    if req.get_method() == &Method::GET &&
-        req.get_header_all("upgrade")
-            .any(|value| value == &HeaderValue::from_static("websocket")) {
+    if req.get_method() == &Method::GET
+        && req
+            .get_header_all("upgrade")
+            .any(|value| value == &HeaderValue::from_static("websocket"))
+    {
         // If a GET request contains "Upgrade: websocket" in its headers, then hand off to Fanout
         // to handle as WebSocket-over-HTTP.
         // For details on WebSocket-over-HTTP, see https://pushpin.org/docs/protocols/websocket-over-http/
