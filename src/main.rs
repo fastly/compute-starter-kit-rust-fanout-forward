@@ -14,9 +14,7 @@ fn main() -> Result<(), Error> {
 
     if req.get_method() == &Method::GET &&
         req.get_header_all("upgrade")
-            .collect()
-            .contains(&&HeaderValue::from_static("websocket"))
-    {
+            .any(|value| value == &HeaderValue::from_static("websocket")) {
         // If a GET request contains "Upgrade: websocket" in its headers, then hand off to Fanout
         // to handle as WebSocket-over-HTTP.
         // For details on WebSocket-over-HTTP, see https://pushpin.org/docs/protocols/websocket-over-http/
