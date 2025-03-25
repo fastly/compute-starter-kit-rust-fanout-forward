@@ -12,16 +12,16 @@ fn main() -> Result<(), Error> {
 
     let mut use_fanout = false;
 
-    if req.get_method() == &Method::GET
+    if req.get_method() == Method::GET
         && req
             .get_header_all("upgrade")
-            .any(|value| value == &HeaderValue::from_static("websocket"))
+            .any(|value| value == HeaderValue::from_static("websocket"))
     {
         // If a GET request contains "Upgrade: websocket" in its headers, then hand off to Fanout
         // to handle as WebSocket-over-HTTP.
         // For details on WebSocket-over-HTTP, see https://pushpin.org/docs/protocols/websocket-over-http/
         use_fanout = true;
-    } else if req.get_method() == &Method::GET || req.get_method() == &Method::HEAD {
+    } else if req.get_method() == Method::GET || req.get_method() == Method::HEAD {
         // If it's a GET or HEAD request, then hand off to Fanout.
         // The backend response can include GRIP control messages to specify connection behavior.
         // For details on GRIP, see https://pushpin.org/docs/protocols/grip/.

@@ -1,11 +1,11 @@
 # This file describes a Fastly Compute package. To learn more visit:
-# https://www.fastly.com/documentation/reference/compute/fastly-toml
+# https://www.fastly.com/documentation/reference/compute/fastly-toml/
 
-authors = ["<oss@fastly.com>"]
+name = "Fanout forwarding starter kit for Rust"
 description = "Enables Fanout on a service, forwarding to a backend."
+authors = ["<devrel@fastly.com>"]
 language = "rust"
 manifest_version = 3
-name = "Fanout forwarding starter kit for Rust"
 
 [scripts]
-  build = "cargo build --bin fastly-compute-project --release --target wasm32-wasi --color always"
+  build = "cargo build --profile release"
