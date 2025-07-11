@@ -1,0 +1,14 @@
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    github.com/project-slug: fastly/compute-starter-kit-rust-fanout-forward
+  description: Fastly Compute Rust starter application for forwarding requests through Fastly Fanout.
+  name: compute-starter-kit-rust-fanout-forward
+  title: fastly/compute-starter-kit-rust-fanout-forward
+spec:
+  lifecycle: source
+  owner: group:fanout
+  type: repository
