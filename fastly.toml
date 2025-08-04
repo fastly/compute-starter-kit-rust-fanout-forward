@@ -7,5 +7,13 @@ authors = ["<devrel@fastly.com>"]
 language = "rust"
 manifest_version = 3
 
+[local_server.pushpin]
+enable = true
+
+[local_server.backends]
+[local_server.backends.origin]
+url = "http://localhost:3000/"
+override_host = "localhost:3000"
+
 [scripts]
-  build = "cargo build --profile release"
+build = "cargo build --profile release"
