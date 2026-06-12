@@ -41,11 +41,17 @@ On the local testing environment, data can be sent to the connections via the GR
 
 The app expects a configured backend named "origin" that points to an origin server. For example, if the server is available at domain `example.com`, then you'll need to create a backend on your Compute service named "origin" with the destination host set to `example.com` and port `443`. Also set `Override Host` to the same host value.
 
-You'll also need to [enable Fanout](https://www.fastly.com/documentation/guides/concepts/real-time-messaging/fanout/#enable-fanout) on your Fastly service to run this application. After deploying the app, you can enable Fanout on your service, type:
+### Enabling Fanout
+
+The first time this starter kit is deployed to your service, Fanout is enabled automatically.
+
+To [enable Fanout](https://www.fastly.com/documentation/guides/concepts/real-time-messaging/fanout/#enable-fanout) support after the fact to an existing Fastly service, type:
 
 ```shell
 fastly products --enable=fanout
 ```
+
+### Handling requests
 
 After setting up the backend configuration and enabling Fanout, incoming HTTP and WebSocket requests that arrive at the service will be processed by the fetch handler:
 
@@ -73,7 +79,12 @@ For example, to check the request for the existence of a certain header:
 
 ## Notes
 
-The code in this starter kit cannot be used with the [`fastly::main` attribute](https://docs.rs/fastly/0.11.2/fastly/attr.main.html) on the `main()` entry point. This is because a function decorated with `fastly::main` is expected to return a response, but handing off to Fanout is an action that does not create a response. Use an undecorated `main()` function instead, and use `Request::from_client()` and `Response::send_to_client()` as needed.
+The code in this starter kit cannot be used with the [`fastly::main` attribute](https://docs.rs/fastly/latest/fastly/attr.main.html) on the `main()` entry point. This is because a function decorated with `fastly::main` is expected to return a response, but handing off to Fanout is an action that does not create a response. Use an undecorated `main()` function instead, and use `Request::from_client()` and `Response::send_to_client()` as needed.
+
+## Compatibility
+
+- [Fastly CLI](https://www.fastly.com/documentation/reference/tools/cli/) 15.2.0 or newer
+- [Fastly Local Development Server (Viceroy)](https://www.fastly.com/documentation/guides/compute/developer-guides/testing/#running-a-local-testing-server) 0.18.0 or newer
 
 ## Security issues
 
